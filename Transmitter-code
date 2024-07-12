@@ -20,7 +20,6 @@ void setup()
 {
   mpu.initialize(); // wake up MPU6050
   Wire.begin();     //  necessary for I2C communication
-  rf_driver.init();  //Instance of ASK
   Serial.begin(9600); //setting up Baud Rate as 9600
 }
 void loop() 
@@ -30,7 +29,6 @@ void loop()
 
   X = map(az, -17000, 17000, 300, 600);    //Send X axis data
   Y = map(ay, -17000, 17000, 0, 300);     //Send Y axis data 
-ax =  X; 
   ay =  Y;
 
   accel = String(ax); //int to String Conversion
