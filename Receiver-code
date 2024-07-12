@@ -21,7 +21,6 @@ void setup()
   Serial.begin(9600);
   pinMode(M1, OUTPUT);
   pinMode(M2, OUTPUT);
-  pinMode(M3, OUTPUT);
   pinMode(M4, OUTPUT);
   pinMode(ENA, OUTPUT);
   pinMode(ENB, OUTPUT);
@@ -30,7 +29,6 @@ void setup()
 void loop() 
 {
   uint8_t buf[7];  // mention the size of the data... depends on how much data is sent. In this case [7].
-  uint8_t buflen = sizeof(buf); 
   if(rf_driver.recv(buf, &buflen))
    {
     str_out = String((char*)buf); 
@@ -38,8 +36,7 @@ void loop()
       {
         if(str_out.substring(i,i+1)==",")
           {
-            accel =str_out.substring(0,i);  // create seperate substrings to store the values of accel and gyro
-            gyro =str_out.substring(i+1);
+            accel =str_out.substring(0,i);  // create seperate substrings to store the values of accel
             break;
           }
     Serial.print("X:");  //Print the values
@@ -49,8 +46,7 @@ void loop()
       
       }
    }
-ax= accel.toInt(); //Convert the Received string values to Int values.
-    ay= gyro.toInt();
+axccel= accel.toInt(); //Convert the Received string values to Int values.
 if(( ax > 520 && ax<550 && ay>130 &&ay<160 )) // Create setpoints ....depends on MPU to MPU you have to set these manually ..dont copy the values may wont work in your case.
      {
       analogWrite(ENA, 255); //Forward
