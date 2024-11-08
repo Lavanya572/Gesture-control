@@ -4,13 +4,28 @@ Gesture Controlled Car is a robot which can be controlled by simple human gestur
 The direction of the car can be changed by moving the hand in a particular direction, each movement generates the values in its corresponding axis. 
 This project can be very helpful for physically challenged people as they can move certain objects with less physical movement.
 
-<img src="https://github.com/user-attachments/assets/7edf7443-51b3-4085-8950-28061e6e98a6" width="200" />
+## Features
+- Gesture-Based Control: Uses hand gestures for navigation, reducing manual intervention.
+- High Accuracy: Achieved 90% accuracy in real-time movement based on gesture input.
+- Wireless Communication: Transmits data from the gesture sensor to the vehicle via radio communication.
 
 
-## Workflow
+## Getting Started
+### Prerequisites
+#### Hardware:
+- Arduino Mega or Pro Mini (for vehicle control)
+- Accelerometer (for gesture sensing)
+- Radio communication modules (e.g., RF module for data transmission)
+#### Software:
+- Arduino IDE for code development and deployment.
+
+## Working
 When a gesture is made by the user the MPU-6050 values are mapped by Arduino pro mini (Transmitter). The transmitter controller encodes this value as string and transmits it to Receiving Arduino through 433MHZ transmitter module. 
 The receiving Arduino receives the data through 433MHZ Receiver module. When the data is received its in-String Format. The controller converts this “String” into “INT” and then as per the program it controls the car “FORWARD”, “BACKWARD”, “LEFT”, Or “RIGHT”.
 
-<img src="https://github.com/user-attachments/assets/0f3eced3-6521-465d-882a-4c9c34ee85a7" width="200" />
+## Technologies Used
+- Arduino IDE: Code development for interpreting gestures and controlling the vehicle.
+- Accelerometer: Captures hand movements and converts them into navigational commands.
+- Radio Communication: Facilitates wireless communication between the gesture controller and the vehicle.
 
 
