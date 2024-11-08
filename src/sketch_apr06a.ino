@@ -6,8 +6,8 @@
 
 RH_ASK rf_driver; 
 MPU6050 mpu;       // Instance of MPU6050
-int16_t ax, ay, az;
-int16_t gx, gy, gz;
+int ax, ay, az;
+int gx, gy, gz;
 
 int X =0;  // variables  for storing  values of ax and ay
 int Y =0;
@@ -21,7 +21,6 @@ void setup()
 {
   mpu.initialize(); // wake up MPU6050
   Wire.begin();     //  necessary for I2C communication
-  rf_driver.init();  //Instance of ASK
   Serial.begin(9600); //setting up Baud Rate as 9600
 }
 
@@ -30,14 +29,13 @@ void loop()
   delay(100);
    mpu.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);  // get the values of ax, ay, az and gx, gy, gz
 
-  X = map(az, -17000, 17000, 300, 600);    //Send X axis data
-  Y = map(ay, -17000, 17000, 0, 300);     //Send Y axis data
+  X = map(ay, -17000, 17000, 300, 600);    //Send X axis data
+  Y = map(ax, -17000, 17000, 0, 300);     //Send Y axis data
 
-  ax =  X; 
   ay =  Y;
 
-  accel = String(ax); //int to String Conversion
-  gyro =  String(ay);
+  accel = String(ay); //int to String Conversion
+  gyro =  String(ax);
   str_out = accel + "," + gyro; //combine the values for sending to other Arduino
 
   static char*msg = str_out.c_str();  // store it as msg
